@@ -1,0 +1,115 @@
+{% comment %}
+  UGC Infinite Image Carousel Section – 40x40 Responsive
+{% endcomment %}
+<section class="w-full overflow-hidden bg-gradient-to-b from-white to-gray-50 py-12">
+  <div class="max-w-7xl mx-auto px-4">
+    {% if section.settings.title != blank %}
+      <h2 class="text-3xl md:text-5xl font-extrabold text-center text-gray-900 mb-10 tracking-tight">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="relative overflow-hidden">
+        <div class="ugc-carousel">
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank %}
+              <div class="ugc-item">
+                <img
+                  src="{{ block.settings.image | img_url: '100x100' }}"
+                  alt="UGC Image"
+                  loading="lazy"
+                >
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <p class="text-center text-gray-500">No UGC images added yet.</p>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ugc-carousel {
+    display: flex;
+    gap: 1.5rem;
+    white-space: nowrap;
+    will-change: transform;
+    animation: scroll 40s linear infinite;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .ugc-carousel {
+      animation-duration: 60s;
+      gap: 1rem;
+    }
+  }
+
+  .ugc-item {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+  }
+
+  .ugc-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    object-fit: cover;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "UGC Image Carousel",
+  "tag": "section",
+  "class": "ugc-image-carousel-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ugc_image",
+      "name": "UGC Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Upload Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "UGC Image Carousel",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
