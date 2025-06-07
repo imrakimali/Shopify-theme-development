@@ -9,7 +9,7 @@
     gtag('config', '{{ shop.metafields.pagefly.measurementId }}', { groups: 'pagefly' });
     window.pfPageInfo = Object.assign(window.pfPageInfo || {})
 
-    document.addEventListener("PageFlyHelperContentLoaded", () => {
+    window.addEventListener("load", () => {
       
     let pageId = window.__pagefly_setting__?.pageId
     let pageTitle = window.__pagefly_setting__?.pageTitle
@@ -97,7 +97,7 @@
       };
       document.body.appendChild(scriptPFAnalytic);
     }
-  }, { once: true });
+  });
   </script>
   {% endif %}
   <script>

@@ -41,9 +41,8 @@
         "announcement_434dtN",
         "announcement_CaAnRD"
       ],
-      "disabled": true,
       "custom_css": [
-        "h2 {padding-top: 20px; padding-bottom: 20px;}"
+        "h2{padding-top: 20px; padding-bottom: 20px;}"
       ],
       "settings": {
         "color_scheme": "scheme-73c87de3-c815-4c81-86dc-dadaffa690f1",
@@ -57,7 +56,6 @@
     },
     "header": {
       "type": "header",
-      "disabled": true,
       "settings": {
         "logo_position": "middle-left",
         "menu": "main-menu",
