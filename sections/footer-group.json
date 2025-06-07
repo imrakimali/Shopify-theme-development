@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "disabled": true,
+      "settings": {
+        "footer_description": "Don't miss out on new books and special offers.",
+        "register_button_url": "",
+        "register_button_text": "Register",
+        "info_menu": "main-menu",
+        "info_heading": "Information",
+        "legal_menu": "footer",
+        "legal_heading": "Legal",
+        "instagram_url": "",
+        "tiktok_url": "",
+        "youtube_url": "",
+        "linkedin_url": ""
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

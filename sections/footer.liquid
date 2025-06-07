@@ -1,0 +1,170 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+
+<footer class="footer bg-dark text-white py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Logo and Description -->
+      <div class="col-md-4">
+        <div class="footer-logo mb-3">
+          <a href="{{ shop.url }}">
+            {% if settings.footer_logo != blank %}
+              <img src="{{ settings.footer_logo | img_url: 'master' }}" alt="{{ shop.name }}" height="50">
+            {% else %}
+              <h3>{{ shop.name }}</h3>
+            {% endif %}
+          </a>
+        </div>
+        <p>
+          {{
+            settings.footer_description
+            | default: "Don't miss out on new books and special offers. Exclusive reading samples, competitions, autograph sessions, and more."
+          }}
+        </p>
+        <a href="{{ settings.register_button_url | default: '#' }}" class="btn btn-light btn-sm mt-2">
+          {{ settings.register_button_text | default: 'Register' }}
+        </a>
+      </div>
+
+      <!-- Information Links -->
+      <div class="col-md-4">
+        <h5 class="fw-bold mb-3">{{ settings.info_heading | default: 'Information' }}</h5>
+        <ul class="list-unstyled">
+          {% for link in linklists[settings.info_menu].links %}
+            <li>
+              <a href="{{ link.url }}" class="text-white text-decoration-none">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Legal Links -->
+      <div class="col-md-4">
+        <h5 class="fw-bold mb-3">{{ settings.legal_heading | default: 'Legal' }}</h5>
+        <ul class="list-unstyled">
+          {% for link in linklists[settings.legal_menu].links %}
+            <li>
+              <a href="{{ link.url }}" class="text-white text-decoration-none">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="text-center my-4">
+      {% if settings.instagram_url != blank %}
+        <a href="{{ settings.instagram_url }}" class="text-white me-3">
+          <i class="bi bi-instagram"></i>
+        </a>
+      {% endif %}
+      {% if settings.tiktok_url != blank %}
+        <a href="{{ settings.tiktok_url }}" class="text-white me-3">
+          <i class="bi bi-tiktok"></i>
+        </a>
+      {% endif %}
+      {% if settings.youtube_url != blank %}
+        <a href="{{ settings.youtube_url }}" class="text-white me-3">
+          <i class="bi bi-youtube"></i>
+        </a>
+      {% endif %}
+      {% if settings.linkedin_url != blank %}
+        <a href="{{ settings.linkedin_url }}" class="text-white">
+          <i class="bi bi-linkedin"></i>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center mt-3">
+      <p class="mb-0">
+        © {{ 'now' | date: '%Y' }}
+        {{ shop.name }}. All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Dynamic Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "text",
+      "id": "footer_description",
+      "label": "Footer Description",
+      "default": "Don't miss out on new books and special offers."
+    },
+    {
+      "type": "url",
+      "id": "register_button_url",
+      "label": "Register Button Link"
+    },
+    {
+      "type": "text",
+      "id": "register_button_text",
+      "label": "Register Button Text",
+      "default": "Register"
+    },
+    {
+      "type": "link_list",
+      "id": "info_menu",
+      "label": "Information Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Information Heading",
+      "default": "Information"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Legal Menu",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "legal_heading",
+      "label": "Legal Heading",
+      "default": "Legal"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}
